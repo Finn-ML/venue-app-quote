@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Roadmap — NYC Venue Discovery App</title>
+<title>Project Roadmap — Nightlife Discovery App</title>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -18,96 +18,58 @@ body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#e0e0e0;min-height:
 <div id="root"></div>
 <script type="text/babel">
 const { useState } = React;
-const { motion, AnimatePresence } = window["framer-motion"] || {};
+const { motion } = window["framer-motion"] || {};
 const M = motion || { div: 'div', h1: 'h1', p: 'p', span: 'span' };
 
 const stages = [
   {
     num: 1,
     name: "Design",
-    weeks: "Weeks 1-2",
-    dates: "March 31 - April 11",
-    status: "In Progress",
+    dates: "April 7 - 17",
+    status: "Up First",
     color: "#00c896",
     payment: { amount: 3350, trigger: "On signing" },
-    tasks: [
-      { name: "Kick-off call", done: true },
-      { name: "Information architecture & user flows", done: true },
-      { name: "Wireframes", done: true },
-      { name: "Hi-fi UI design", done: false },
-      { name: "Design review & feedback", done: false },
-      { name: "Technical architecture", done: true },
-      { name: "Sign-off on designs", done: false },
+    weeks: [
+      { label: "Week 1", dates: "Apr 7 - 11", items: ["Kick-off", "Requirements", "User flows & wireframes"] },
+      { label: "Week 2", dates: "Apr 14 - 17", items: ["High-fidelity UI designs", "Design review with Jacob", "Sign-off"] },
     ],
-    deliverables: ["Wireframes", "UI designs", "User flows", "Tech architecture doc"],
   },
   {
     num: 2,
     name: "Build",
-    weeks: "Weeks 3-5",
-    dates: "April 14 - May 2",
+    dates: "April 21 - May 8",
     status: "Up Next",
     color: "#8282ff",
     payment: { amount: 3350, trigger: "On design sign-off" },
-    tasks: [
-      { name: "Scaffolding & environment setup", done: false },
-      { name: "Interactive NYC map + markers", done: false },
-      { name: "User location & heat markers", done: false },
-      { name: "Venue detail sheets", done: false },
-      { name: "Search & discovery with photos", done: false },
-      { name: "Auth / accounts / profiles", done: false },
-      { name: "Reviews, tags & custom lists", done: false },
-      { name: "Follow system & notifications", done: false },
-      { name: "Push notifications (iOS & Android)", done: false },
-      { name: "Mid-build demo with Jacob", done: false },
+    weeks: [
+      { label: "Week 3", dates: "Apr 21 - 25", items: ["Map, venue markers, clustering"] },
+      { label: "Week 4", dates: "Apr 28 - May 1", items: ["Venue details, search, photos"] },
+      { label: "Week 5", dates: "May 4 - 8", items: ["Auth, ratings, mid-build demo"] },
     ],
-    deliverables: ["Fully functional app with all MVP features"],
   },
   {
     num: 3,
     name: "Internal QA",
-    weeks: "Week 6",
-    dates: "May 5 - May 9",
+    dates: "May 11 - 15",
     status: "Upcoming",
     color: "#ff8c42",
     payment: null,
-    tasks: [
-      { name: "Systematic testing", done: false },
-      { name: "Cross-browser & device testing", done: false },
-      { name: "Performance optimisation", done: false },
-      { name: "Bug fixes & edge cases", done: false },
-      { name: "Security review", done: false },
+    weeks: [
+      { label: "Week 6", dates: "May 11 - 15", items: ["Full testing", "Performance", "Bug fixes"] },
     ],
-    deliverables: ["QA report", "Bug-free build on staging"],
   },
   {
     num: 4,
-    name: "Client Testing & Launch",
-    weeks: "Weeks 7-8",
-    dates: "May 12 - May 23",
+    name: "Client Testing & Handover",
+    dates: "May 18 - 29",
     status: "Upcoming",
     color: "#e056a0",
     payment: { amount: 6700, trigger: "On QA complete + launch" },
-    tasks: [
-      { name: "Deploy to staging for Jacob", done: false },
-      { name: "Client feedback & refinements", done: false },
-      { name: "Final design tweaks", done: false },
-      { name: "App Store submission", done: false },
-      { name: "Production deployment", done: false },
-      { name: "Technical docs & handover", done: false },
-      { name: "Handover walkthrough call", done: false },
+    weeks: [
+      { label: "Week 7", dates: "May 18 - 22", items: ["Staging deploy", "Jacob tests", "Feedback fixes"] },
+      { label: "Week 8", dates: "May 25 - 29", items: ["Final polish", "Production deploy", "Handover call"] },
     ],
-    deliverables: ["Production app", "Source code", "Documentation", "Live on App Store"],
   },
-];
-
-const phase2 = [
-  "Full activity feed",
-  "Real-time friends map",
-  "Check-in system",
-  "Admin dashboard",
-  "AI recommendations",
-  "Venue owner profiles",
 ];
 
 function StatusBadge({ status, color }) {
@@ -122,14 +84,13 @@ function StatusBadge({ status, color }) {
 }
 
 function TimelineBar() {
-  const totalWeeks = 8;
   const stageWidths = [2, 3, 1, 2];
   return (
     <M.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      style={{ maxWidth: 900, margin: '0 auto 50px', padding: '0 20px' }}
+      style={{ maxWidth: 900, margin: '0 auto 44px', padding: '0 20px' }}
     >
       <div style={{ display: 'flex', gap: 3, borderRadius: 8, overflow: 'hidden' }}>
         {stages.map((s, i) => (
@@ -139,11 +100,8 @@ function TimelineBar() {
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.5, delay: 0.5 + i * 0.12, ease: 'easeOut' }}
             style={{
-              flex: stageWidths[i],
-              height: 6,
-              background: s.status === 'In Progress'
-                ? `linear-gradient(90deg, ${s.color}, ${s.color}80)`
-                : `${s.color}30`,
+              flex: stageWidths[i], height: 6,
+              background: `${s.color}30`,
               transformOrigin: 'left',
               borderRadius: i === 0 ? '4px 0 0 4px' : i === 3 ? '0 4px 4px 0' : 0,
             }}
@@ -153,7 +111,7 @@ function TimelineBar() {
       <div style={{ display: 'flex', gap: 3, marginTop: 6 }}>
         {stages.map((s, i) => (
           <div key={i} style={{ flex: stageWidths[i], fontSize: 10, color: 'rgba(255,255,255,0.3)', textAlign: 'center' }}>
-            {s.weeks}
+            {s.dates}
           </div>
         ))}
       </div>
@@ -162,10 +120,7 @@ function TimelineBar() {
 }
 
 function StageCard({ stage, index }) {
-  const doneCount = stage.tasks.filter(t => t.done).length;
-  const totalCount = stage.tasks.length;
   const c = stage.color;
-
   return (
     <M.div
       initial={{ opacity: 0, y: 40 }}
@@ -175,98 +130,56 @@ function StageCard({ stage, index }) {
         background: '#111118',
         border: `1px solid ${c}25`,
         borderRadius: 16,
-        padding: '28px 24px',
-        marginBottom: 20,
+        padding: '24px',
+        marginBottom: 16,
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 18, flexWrap: 'wrap', gap: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           <div style={{
-            width: 40, height: 40, borderRadius: 12,
+            width: 38, height: 38, borderRadius: 10,
             background: `${c}15`, border: `1px solid ${c}30`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 18, fontWeight: 700, color: c,
+            fontSize: 17, fontWeight: 700, color: c,
           }}>{stage.num}</div>
           <div>
-            <h3 style={{ fontSize: 20, fontWeight: 600, color: '#fff', marginBottom: 2 }}>{stage.name}</h3>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)' }}>
-              {stage.dates} <span style={{ margin: '0 6px', opacity: 0.3 }}>|</span> {stage.weeks}
-            </div>
+            <h3 style={{ fontSize: 19, fontWeight: 600, color: '#fff', marginBottom: 2 }}>{stage.name}</h3>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)' }}>{stage.dates}</div>
           </div>
         </div>
         <StatusBadge status={stage.status} color={c} />
       </div>
 
-      {/* Progress */}
-      <div style={{ marginBottom: 20 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>Progress</span>
-          <span style={{ fontSize: 11, color: c }}>{doneCount}/{totalCount} tasks</span>
-        </div>
-        <div style={{ height: 3, background: 'rgba(255,255,255,0.06)', borderRadius: 2 }}>
+      {/* Weekly breakdown */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: stage.payment ? 16 : 0 }}>
+        {stage.weeks.map((week, wi) => (
           <M.div
-            initial={{ width: 0 }}
-            animate={{ width: `${(doneCount / totalCount) * 100}%` }}
-            transition={{ duration: 0.8, delay: 0.6 + index * 0.15 }}
-            style={{ height: '100%', background: c, borderRadius: 2 }}
-          />
-        </div>
-      </div>
-
-      {/* Tasks */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 6, marginBottom: 20 }}>
-        {stage.tasks.map((task, i) => (
-          <M.div
-            key={i}
+            key={wi}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.6 + index * 0.15 + i * 0.04 }}
+            transition={{ duration: 0.35, delay: 0.55 + index * 0.15 + wi * 0.08 }}
             style={{
-              display: 'flex', alignItems: 'center', gap: 8,
-              padding: '8px 10px', borderRadius: 8,
-              background: task.done ? `${c}08` : 'rgba(255,255,255,0.02)',
+              padding: '12px 14px', borderRadius: 10,
+              background: `${c}06`, border: `1px solid ${c}10`,
             }}
           >
-            <div style={{
-              width: 16, height: 16, borderRadius: 4, flexShrink: 0,
-              background: task.done ? c : 'transparent',
-              border: task.done ? 'none' : '1.5px solid rgba(255,255,255,0.15)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 10, color: '#fff',
-            }}>
-              {task.done && '\u2713'}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+              <span style={{ fontSize: 12, fontWeight: 600, color: c }}>{week.label}</span>
+              <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)' }}>{week.dates}</span>
             </div>
-            <span style={{
-              fontSize: 13,
-              color: task.done ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.7)',
-              textDecoration: task.done ? 'line-through' : 'none',
-            }}>{task.name}</span>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7 }}>
+              {week.items.join(' \u00B7 ')}
+            </div>
           </M.div>
         ))}
-      </div>
-
-      {/* Deliverables */}
-      <div style={{
-        padding: '14px 16px', borderRadius: 10,
-        background: `${c}06`, border: `1px solid ${c}12`,
-        marginBottom: stage.payment ? 14 : 0,
-      }}>
-        <div style={{ fontSize: 11, fontWeight: 600, color: c, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Deliverables</div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-          {stage.deliverables.map((d, i) => (
-            <span key={i} style={{
-              fontSize: 12, padding: '4px 10px', borderRadius: 6,
-              background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.5)',
-            }}>{d}</span>
-          ))}
-        </div>
       </div>
 
       {/* Payment */}
       {stage.payment && (
         <div style={{
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          padding: '12px 16px', borderRadius: 10,
+          padding: '12px 14px', borderRadius: 10,
           background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)',
         }}>
           <div>
@@ -288,7 +201,7 @@ function App() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-        style={{ textAlign: 'center', marginBottom: 40 }}
+        style={{ textAlign: 'center', marginBottom: 36 }}
       >
         <M.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -301,7 +214,7 @@ function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.6 }}
           style={{ fontSize: 34, fontWeight: 700, color: '#fff', marginBottom: 8 }}
-        >NYC Venue Discovery App</M.h1>
+        >Nightlife Discovery App</M.h1>
         <M.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -317,17 +230,17 @@ function App() {
         transition={{ duration: 0.5, delay: 0.25 }}
         style={{
           display: 'flex', justifyContent: 'center', gap: 30, flexWrap: 'wrap',
-          marginBottom: 40, padding: '18px 24px', borderRadius: 12,
+          marginBottom: 36, padding: '16px 24px', borderRadius: 12,
           background: '#111118', border: '1px solid rgba(255,255,255,0.06)',
         }}
       >
         {[
           { label: 'Total', value: '$13,400', color: '#00c896' },
           { label: 'Duration', value: '8 Weeks', color: '#8282ff' },
-          { label: 'Timeline', value: 'Mar 31 - May 23', color: '#ff8c42' },
+          { label: 'Start', value: 'April 7', color: '#ff8c42' },
           { label: 'Payments', value: '3 Milestones', color: '#e056a0' },
         ].map((item, i) => (
-          <div key={i} style={{ textAlign: 'center', minWidth: 100 }}>
+          <div key={i} style={{ textAlign: 'center', minWidth: 90 }}>
             <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>{item.label}</div>
             <div style={{ fontSize: 18, fontWeight: 600, color: item.color }}>{item.value}</div>
           </div>
@@ -342,52 +255,34 @@ function App() {
         <StageCard key={i} stage={stage} index={i} />
       ))}
 
-      {/* Phase 2 Expansion */}
-      <M.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.2, ease: 'easeOut' }}
-        style={{
-          background: '#111118', border: '1px solid rgba(255,255,255,0.06)',
-          borderRadius: 16, padding: '28px', marginTop: 20,
-        }}
-      >
-        <h3 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: 4 }}>Phase 2 Expansion</h3>
-        <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', marginBottom: 18 }}>
-          Available after MVP launch - priced separately
-        </p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-          {phase2.map((item, i) => (
-            <M.span
-              key={i}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.4 + i * 0.08, duration: 0.4, ease: 'easeOut' }}
-              whileHover={{ scale: 1.05, borderColor: 'rgba(255,255,255,0.2)' }}
-              style={{
-                fontSize: 13, padding: '8px 14px', borderRadius: 20,
-                background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                color: 'rgba(255,255,255,0.45)',
-                cursor: 'default',
-              }}
-            >{item}</M.span>
-          ))}
-        </div>
-      </M.div>
-
-      {/* Post-launch support */}
+      {/* Timeline note */}
       <M.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 0.5 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
         style={{
-          marginTop: 20, padding: '16px 20px', borderRadius: 12,
+          marginTop: 8, padding: '14px 18px', borderRadius: 10,
+          background: 'rgba(0,200,150,0.04)', border: '1px solid rgba(0,200,150,0.12)',
+          textAlign: 'center',
+        }}
+      >
+        <div style={{ fontSize: 13, color: '#00c896', fontWeight: 500 }}>
+          Timeline begins upon receipt of Stage 1 payment ($3,350)
+        </div>
+      </M.div>
+
+      {/* Post-handover */}
+      <M.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.3, duration: 0.5 }}
+        style={{
+          marginTop: 16, padding: '14px 18px', borderRadius: 10,
           background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)',
         }}
       >
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.8 }}>
-          &#10003; 2 weeks post-launch support included<br/>
+          &#10003; 2 weeks post-handover support included<br/>
           &#10003; Additional support available via hourly packs
         </div>
       </M.div>
@@ -396,8 +291,8 @@ function App() {
       <M.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.6 }}
-        style={{ textAlign: 'center', marginTop: 50, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        transition={{ delay: 1.5, duration: 0.6 }}
+        style={{ textAlign: 'center', marginTop: 44, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.06)' }}
       >
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', letterSpacing: 1 }}>
           GROW SMART AI &#8212; growsmartai.co.uk
