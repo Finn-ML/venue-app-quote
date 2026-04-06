@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Quote — Grow Smart AI</title>
+<title>Project Roadmap — NYC Venue Discovery App</title>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -19,50 +19,86 @@ body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#e0e0e0;min-height:
 <script type="text/babel">
 const { useState } = React;
 const { motion, AnimatePresence } = window["framer-motion"] || {};
-
-// Fallback if framer-motion doesn't load as expected
 const M = motion || { div: 'div', h1: 'h1', p: 'p', span: 'span' };
 
-const quoteEssentials = {
-  name: "Essentials MVP",
-  tag: "Base",
-  price: 9000,
-  timeline: "6 weeks",
-  features: [
-    { name: "NYC Interactive Map", desc: "Venue markers, user location, map navigation", price: 1800 },
-    { name: "Search & Discovery", desc: "Search bar, filters, results with photos", price: 1500 },
-    { name: "Venue Pages", desc: "Full venue info, photos, hours, location", price: 1200 },
-    { name: "Auth & Accounts", desc: "Sign up, login, email verification, password reset", price: 1200 },
-    { name: "User Profiles", desc: "Basic profile page, edit profile, avatar", price: 800 },
-    { name: "Reviews", desc: "Numerical score, text review, display on venue", price: 1000 },
-    { name: "Core Infrastructure", desc: "Database, hosting, object storage, API layer", price: 1500 },
-  ]
-};
-
-const quoteAgreed = {
-  name: "Agreed MVP",
-  tag: "Confirmed",
-  price: 13400,
-  timeline: "8–10 weeks",
-  features: [
-    { name: "NYC Interactive Map", desc: "Venue markers, user location, map navigation", price: 1800 },
-    { name: "Search & Discovery", desc: "Search bar, filters, venue results with photos (Resy-style)", price: 1500 },
-    { name: "Venue Pages", desc: "Full venue info, photos, hours, Google ratings on launch", price: 1200 },
-    { name: "Auth & Accounts", desc: "Sign up, login, email verification, password reset", price: 1200 },
-    { name: "User Profiles & Follows", desc: "Profile page, avatar, bio, follower/following counts, follow system", price: 1500, added: true },
-    { name: "Reviews & Tags", desc: "Numerical score, optional label tagging, bookmark as alternative", price: 1300, added: true },
-    { name: "Custom Lists", desc: "Create, save, and manage personal venue lists", price: 1500, added: true },
-    { name: "Notification Bell", desc: "Activity notifications from follows and reviews", price: 700, added: true },
-    { name: "Push Notifications", desc: "Real-time native push alerts for activity and updates", price: 1200, added: true },
-    { name: "Core Infrastructure", desc: "Database (Supabase), hosting, object storage, API layer", price: 1500 },
-    { name: "App Store Deployment", desc: "Full iOS & Android setup, submission, and approval", price: 0, added: true },
-  ]
-};
-
-const paymentSchedule = [
-  { phase: "Design Phase", pct: "25%", amount: 3350, trigger: "On signing" },
-  { phase: "Build Phase", pct: "25%", amount: 3350, trigger: "Design sign-off" },
-  { phase: "Delivery & Launch", pct: "50%", amount: 6700, trigger: "QA complete + launch" },
+const stages = [
+  {
+    num: 1,
+    name: "Design",
+    weeks: "Weeks 1-2",
+    dates: "March 31 - April 11",
+    status: "In Progress",
+    color: "#00c896",
+    payment: { amount: 3350, trigger: "On signing" },
+    tasks: [
+      { name: "Kick-off call", done: true },
+      { name: "Information architecture & user flows", done: true },
+      { name: "Wireframes", done: true },
+      { name: "Hi-fi UI design", done: false },
+      { name: "Design review & feedback", done: false },
+      { name: "Technical architecture", done: true },
+      { name: "Sign-off on designs", done: false },
+    ],
+    deliverables: ["Wireframes", "UI designs", "User flows", "Tech architecture doc"],
+  },
+  {
+    num: 2,
+    name: "Build",
+    weeks: "Weeks 3-5",
+    dates: "April 14 - May 2",
+    status: "Up Next",
+    color: "#8282ff",
+    payment: { amount: 3350, trigger: "On design sign-off" },
+    tasks: [
+      { name: "Scaffolding & environment setup", done: false },
+      { name: "Interactive NYC map + markers", done: false },
+      { name: "User location & heat markers", done: false },
+      { name: "Venue detail sheets", done: false },
+      { name: "Search & discovery with photos", done: false },
+      { name: "Auth / accounts / profiles", done: false },
+      { name: "Reviews, tags & custom lists", done: false },
+      { name: "Follow system & notifications", done: false },
+      { name: "Push notifications (iOS & Android)", done: false },
+      { name: "Mid-build demo with Jacob", done: false },
+    ],
+    deliverables: ["Fully functional app with all MVP features"],
+  },
+  {
+    num: 3,
+    name: "Internal QA",
+    weeks: "Week 6",
+    dates: "May 5 - May 9",
+    status: "Upcoming",
+    color: "#ff8c42",
+    payment: null,
+    tasks: [
+      { name: "Systematic testing", done: false },
+      { name: "Cross-browser & device testing", done: false },
+      { name: "Performance optimisation", done: false },
+      { name: "Bug fixes & edge cases", done: false },
+      { name: "Security review", done: false },
+    ],
+    deliverables: ["QA report", "Bug-free build on staging"],
+  },
+  {
+    num: 4,
+    name: "Client Testing & Launch",
+    weeks: "Weeks 7-8",
+    dates: "May 12 - May 23",
+    status: "Upcoming",
+    color: "#e056a0",
+    payment: { amount: 6700, trigger: "On QA complete + launch" },
+    tasks: [
+      { name: "Deploy to staging for Jacob", done: false },
+      { name: "Client feedback & refinements", done: false },
+      { name: "Final design tweaks", done: false },
+      { name: "App Store submission", done: false },
+      { name: "Production deployment", done: false },
+      { name: "Technical docs & handover", done: false },
+      { name: "Handover walkthrough call", done: false },
+    ],
+    deliverables: ["Production app", "Source code", "Documentation", "Live on App Store"],
+  },
 ];
 
 const phase2 = [
@@ -74,216 +110,297 @@ const phase2 = [
   "Venue owner profiles",
 ];
 
-function QuoteCard({ quote, active, onClick, index }) {
-  const colors = {
-    "Confirmed": { bg: 'rgba(0,200,150,0.12)', color: '#00c896', border: 'rgba(0,200,150,0.4)', shadow: 'rgba(0,200,150,0.08)', glow: 'rgba(0,200,150,0.15)' },
-    "Base": { bg: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)', border: 'rgba(255,255,255,0.2)', shadow: 'rgba(255,255,255,0.04)', glow: 'transparent' },
-  };
-  const c = colors[quote.tag] || colors["Previous"];
+function StatusBadge({ status, color }) {
+  return (
+    <span style={{
+      fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1.2,
+      padding: '4px 10px', borderRadius: 20,
+      background: `${color}18`, color: color,
+      border: `1px solid ${color}30`,
+    }}>{status}</span>
+  );
+}
+
+function TimelineBar() {
+  const totalWeeks = 8;
+  const stageWidths = [2, 3, 1, 2];
   return (
     <M.div
-      initial={{opacity:0, y:40}}
-      animate={{opacity:1, y:0}}
-      transition={{duration:0.6, delay: 0.2 + index * 0.15, ease:[0.25,0.46,0.45,0.94]}}
-      onClick={onClick}
-      whileHover={{scale:1.02, y:-4}}
-      whileTap={{scale:0.98}}
-      style={{
-        flex:1, minWidth:300, maxWidth:440,
-        background: active ? 'linear-gradient(135deg,#12121a,#1a1a2e)' : '#111118',
-        border: active ? `1px solid ${c.border}` : '1px solid rgba(255,255,255,0.06)',
-        borderRadius:16, padding:'28px 24px', cursor:'pointer',
-        boxShadow: active ? `0 8px 40px ${c.shadow}, 0 0 60px ${c.glow}` : 'none',
-      }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+      style={{ maxWidth: 900, margin: '0 auto 50px', padding: '0 20px' }}
     >
-      <M.div initial={{opacity:0,x:-10}} animate={{opacity:1,x:0}} transition={{delay:0.4+index*0.15}}>
-        <span style={{
-          fontSize:10,fontWeight:600,textTransform:'uppercase',letterSpacing:1.5,
-          padding:'4px 10px',borderRadius:20,
-          background: c.bg, color: c.color,
-        }}>{quote.tag}</span>
-      </M.div>
-      <h2 style={{fontSize:22,fontWeight:600,marginTop:10,marginBottom:4,color:'#fff'}}>{quote.name}</h2>
-      <div style={{display:'flex',alignItems:'baseline',gap:8,marginBottom:4}}>
-        <span style={{fontSize:36,fontWeight:700,color:'#fff'}}>${quote.price.toLocaleString()}</span>
-        <span style={{fontSize:14,color:'rgba(255,255,255,0.4)'}}>USD</span>
-      </div>
-      <p style={{fontSize:13,color:'rgba(255,255,255,0.4)',marginBottom:20}}>
-        Timeline: {quote.timeline}
-      </p>
-      <div style={{display:'flex',flexDirection:'column',gap:8}}>
-        {quote.features.map((f,i) => (
+      <div style={{ display: 'flex', gap: 3, borderRadius: 8, overflow: 'hidden' }}>
+        {stages.map((s, i) => (
           <M.div
             key={i}
-            initial={{opacity:0,x:-20}}
-            animate={{opacity:1,x:0}}
-            transition={{duration:0.4, delay:0.5 + index*0.15 + i*0.05, ease:'easeOut'}}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 + i * 0.12, ease: 'easeOut' }}
             style={{
-              padding:'10px 12px',borderRadius:10,
-              background: f.added ? 'rgba(0,200,150,0.06)' : 'rgba(255,255,255,0.02)',
-              border: f.added ? '1px solid rgba(0,200,150,0.15)' : '1px solid rgba(255,255,255,0.04)',
+              flex: stageWidths[i],
+              height: 6,
+              background: s.status === 'In Progress'
+                ? `linear-gradient(90deg, ${s.color}, ${s.color}80)`
+                : `${s.color}30`,
+              transformOrigin: 'left',
+              borderRadius: i === 0 ? '4px 0 0 4px' : i === 3 ? '0 4px 4px 0' : 0,
             }}
-          >
-            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:1}}>
-              <div style={{fontSize:13,fontWeight:500,color:'#fff'}}>
-                {f.added && <span style={{color:'#00c896',marginRight:6,fontSize:11}}>★</span>}
-                {f.name}
-              </div>
-              <div style={{fontSize:12,fontWeight:600,color: f.added ? '#00c896' : 'rgba(255,255,255,0.3)',whiteSpace:'nowrap',marginLeft:12}}>
-                {f.price === 0 ? 'Included' : `$${f.price.toLocaleString()}`}
-              </div>
-            </div>
-            <div style={{fontSize:11,color:'rgba(255,255,255,0.3)'}}>{f.desc}</div>
-          </M.div>
+          />
+        ))}
+      </div>
+      <div style={{ display: 'flex', gap: 3, marginTop: 6 }}>
+        {stages.map((s, i) => (
+          <div key={i} style={{ flex: stageWidths[i], fontSize: 10, color: 'rgba(255,255,255,0.3)', textAlign: 'center' }}>
+            {s.weeks}
+          </div>
         ))}
       </div>
     </M.div>
   );
 }
 
-function App() {
-  const [active, setActive] = useState('agreed');
-  
-  return (
-    <div style={{maxWidth:1100,margin:'0 auto',padding:'40px 20px'}}>
-      {/* Header */}
-      <M.div
-        initial={{opacity:0, y:-20}}
-        animate={{opacity:1, y:0}}
-        transition={{duration:0.7, ease:[0.25,0.46,0.45,0.94]}}
-        style={{textAlign:'center',marginBottom:50}}
-      >
-        <M.div
-          initial={{opacity:0,scale:0.9}}
-          animate={{opacity:1,scale:1}}
-          transition={{delay:0.1,duration:0.5}}
-          style={{fontSize:11,fontWeight:600,textTransform:'uppercase',letterSpacing:3,color:'rgba(255,255,255,0.25)',marginBottom:8}}
-        >
-          Project Proposal
-        </M.div>
-        <M.h1
-          initial={{opacity:0,y:10}}
-          animate={{opacity:1,y:0}}
-          transition={{delay:0.15,duration:0.6}}
-          style={{fontSize:34,fontWeight:700,color:'#fff',marginBottom:6}}
-        >
-          NYC Venue Discovery App
-        </M.h1>
-        <M.p
-          initial={{opacity:0}}
-          animate={{opacity:1}}
-          transition={{delay:0.3,duration:0.5}}
-          style={{fontSize:15,color:'rgba(255,255,255,0.35)'}}
-        >
-          Prepared by Grow Smart AI — February 2026
-        </M.p>
-      </M.div>
+function StageCard({ stage, index }) {
+  const doneCount = stage.tasks.filter(t => t.done).length;
+  const totalCount = stage.tasks.length;
+  const c = stage.color;
 
-      {/* Quote Cards */}
-      <div style={{display:'flex',gap:20,flexWrap:'wrap',justifyContent:'center',marginBottom:60}}>
-        <QuoteCard quote={quoteEssentials} active={active==='ess'} onClick={()=>setActive('ess')} index={0} />
-        <QuoteCard quote={quoteAgreed} active={active==='agreed'} onClick={()=>setActive('agreed')} index={1} />
+  return (
+    <M.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.4 + index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+      style={{
+        background: '#111118',
+        border: `1px solid ${c}25`,
+        borderRadius: 16,
+        padding: '28px 24px',
+        marginBottom: 20,
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          <div style={{
+            width: 40, height: 40, borderRadius: 12,
+            background: `${c}15`, border: `1px solid ${c}30`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 18, fontWeight: 700, color: c,
+          }}>{stage.num}</div>
+          <div>
+            <h3 style={{ fontSize: 20, fontWeight: 600, color: '#fff', marginBottom: 2 }}>{stage.name}</h3>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)' }}>
+              {stage.dates} <span style={{ margin: '0 6px', opacity: 0.3 }}>|</span> {stage.weeks}
+            </div>
+          </div>
+        </div>
+        <StatusBadge status={stage.status} color={c} />
       </div>
 
-      {/* Payment Schedule */}
-      <M.div
-        initial={{opacity:0,y:30}}
-        animate={{opacity:1,y:0}}
-        transition={{duration:0.6,delay:0.8,ease:'easeOut'}}
-        style={{
-          maxWidth:700,margin:'0 auto 60px',
-          background:'#111118',border:'1px solid rgba(130,130,255,0.15)',
-          borderRadius:16,padding:'28px'
-        }}
-      >
-        <h3 style={{fontSize:18,fontWeight:600,color:'#8282ff',marginBottom:4}}>Payment Schedule</h3>
-        <p style={{fontSize:12,color:'rgba(255,255,255,0.3)',marginBottom:20}}>
-          Broken into three phases
-        </p>
-        <div style={{display:'flex',flexDirection:'column',gap:12}}>
-          {paymentSchedule.map((p,i) => (
-            <M.div
-              key={i}
-              initial={{opacity:0,x:-30}}
-              animate={{opacity:1,x:0}}
-              transition={{duration:0.5,delay:1.0+i*0.12,ease:'easeOut'}}
-              whileHover={{x:4}}
-              style={{
-                display:'flex',justifyContent:'space-between',alignItems:'center',
-                padding:'16px 18px',borderRadius:12,
-                background:'rgba(130,130,255,0.04)',
-                border:'1px solid rgba(130,130,255,0.1)',
-              }}
-            >
-              <div style={{flex:1}}>
-                <div style={{fontSize:15,fontWeight:600,color:'#fff',marginBottom:3}}>
-                  {i+1}. {p.phase} <span style={{color:'#8282ff',fontWeight:500}}>({p.pct})</span>
-                </div>
-                <div style={{fontSize:12,color:'rgba(255,255,255,0.35)'}}>Trigger: {p.trigger}</div>
-              </div>
-              <div style={{fontSize:20,fontWeight:700,color:'#8282ff',whiteSpace:'nowrap',marginLeft:16}}>
-                ${p.amount.toLocaleString()}
-              </div>
-            </M.div>
+      {/* Progress */}
+      <div style={{ marginBottom: 20 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>Progress</span>
+          <span style={{ fontSize: 11, color: c }}>{doneCount}/{totalCount} tasks</span>
+        </div>
+        <div style={{ height: 3, background: 'rgba(255,255,255,0.06)', borderRadius: 2 }}>
+          <M.div
+            initial={{ width: 0 }}
+            animate={{ width: `${(doneCount / totalCount) * 100}%` }}
+            transition={{ duration: 0.8, delay: 0.6 + index * 0.15 }}
+            style={{ height: '100%', background: c, borderRadius: 2 }}
+          />
+        </div>
+      </div>
+
+      {/* Tasks */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 6, marginBottom: 20 }}>
+        {stage.tasks.map((task, i) => (
+          <M.div
+            key={i}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.6 + index * 0.15 + i * 0.04 }}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 8,
+              padding: '8px 10px', borderRadius: 8,
+              background: task.done ? `${c}08` : 'rgba(255,255,255,0.02)',
+            }}
+          >
+            <div style={{
+              width: 16, height: 16, borderRadius: 4, flexShrink: 0,
+              background: task.done ? c : 'transparent',
+              border: task.done ? 'none' : '1.5px solid rgba(255,255,255,0.15)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 10, color: '#fff',
+            }}>
+              {task.done && '\u2713'}
+            </div>
+            <span style={{
+              fontSize: 13,
+              color: task.done ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.7)',
+              textDecoration: task.done ? 'line-through' : 'none',
+            }}>{task.name}</span>
+          </M.div>
+        ))}
+      </div>
+
+      {/* Deliverables */}
+      <div style={{
+        padding: '14px 16px', borderRadius: 10,
+        background: `${c}06`, border: `1px solid ${c}12`,
+        marginBottom: stage.payment ? 14 : 0,
+      }}>
+        <div style={{ fontSize: 11, fontWeight: 600, color: c, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Deliverables</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+          {stage.deliverables.map((d, i) => (
+            <span key={i} style={{
+              fontSize: 12, padding: '4px 10px', borderRadius: 6,
+              background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.5)',
+            }}>{d}</span>
           ))}
         </div>
-        <M.div
-          initial={{opacity:0}}
-          animate={{opacity:1}}
-          transition={{delay:1.4,duration:0.5}}
-          style={{marginTop:18,padding:'14px 18px',borderRadius:12,background:'rgba(255,255,255,0.02)',border:'1px solid rgba(255,255,255,0.06)'}}
-        >
-          <div style={{fontSize:13,color:'rgba(255,255,255,0.4)',lineHeight:1.8}}>
-            ✓ 2 weeks post-launch support included<br/>
-            ✓ Additional support available via hourly packs
+      </div>
+
+      {/* Payment */}
+      {stage.payment && (
+        <div style={{
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          padding: '12px 16px', borderRadius: 10,
+          background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)',
+        }}>
+          <div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>Payment</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)', marginTop: 2 }}>{stage.payment.trigger}</div>
           </div>
-        </M.div>
+          <div style={{ fontSize: 20, fontWeight: 700, color: c }}>${stage.payment.amount.toLocaleString()}</div>
+        </div>
+      )}
+    </M.div>
+  );
+}
+
+function App() {
+  return (
+    <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 20px' }}>
+      {/* Header */}
+      <M.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+        style={{ textAlign: 'center', marginBottom: 40 }}
+      >
+        <M.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 3, color: 'rgba(255,255,255,0.25)', marginBottom: 8 }}
+        >Project Roadmap</M.div>
+        <M.h1
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.6 }}
+          style={{ fontSize: 34, fontWeight: 700, color: '#fff', marginBottom: 8 }}
+        >NYC Venue Discovery App</M.h1>
+        <M.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          style={{ fontSize: 15, color: 'rgba(255,255,255,0.35)' }}
+        >8 weeks &middot; 4 stages &middot; $13,400 total</M.p>
       </M.div>
 
-      {/* Phase 2 */}
+      {/* Summary Bar */}
       <M.div
-        initial={{opacity:0,y:30}}
-        animate={{opacity:1,y:0}}
-        transition={{duration:0.6,delay:1.2,ease:'easeOut'}}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.25 }}
         style={{
-          maxWidth:700,margin:'0 auto',
-          background:'#111118',border:'1px solid rgba(255,255,255,0.06)',
-          borderRadius:16,padding:'28px'
+          display: 'flex', justifyContent: 'center', gap: 30, flexWrap: 'wrap',
+          marginBottom: 40, padding: '18px 24px', borderRadius: 12,
+          background: '#111118', border: '1px solid rgba(255,255,255,0.06)',
         }}
       >
-        <h3 style={{fontSize:18,fontWeight:600,color:'#fff',marginBottom:4}}>Phase 2 Expansion</h3>
-        <p style={{fontSize:12,color:'rgba(255,255,255,0.3)',marginBottom:18}}>
-          Available after MVP launch — priced separately
+        {[
+          { label: 'Total', value: '$13,400', color: '#00c896' },
+          { label: 'Duration', value: '8 Weeks', color: '#8282ff' },
+          { label: 'Timeline', value: 'Mar 31 - May 23', color: '#ff8c42' },
+          { label: 'Payments', value: '3 Milestones', color: '#e056a0' },
+        ].map((item, i) => (
+          <div key={i} style={{ textAlign: 'center', minWidth: 100 }}>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>{item.label}</div>
+            <div style={{ fontSize: 18, fontWeight: 600, color: item.color }}>{item.value}</div>
+          </div>
+        ))}
+      </M.div>
+
+      {/* Timeline Bar */}
+      <TimelineBar />
+
+      {/* Stage Cards */}
+      {stages.map((stage, i) => (
+        <StageCard key={i} stage={stage} index={i} />
+      ))}
+
+      {/* Phase 2 Expansion */}
+      <M.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.2, ease: 'easeOut' }}
+        style={{
+          background: '#111118', border: '1px solid rgba(255,255,255,0.06)',
+          borderRadius: 16, padding: '28px', marginTop: 20,
+        }}
+      >
+        <h3 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: 4 }}>Phase 2 Expansion</h3>
+        <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', marginBottom: 18 }}>
+          Available after MVP launch - priced separately
         </p>
-        <div style={{display:'flex',flexWrap:'wrap',gap:10}}>
-          {phase2.map((item,i) => (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+          {phase2.map((item, i) => (
             <M.span
               key={i}
-              initial={{opacity:0,scale:0.8}}
-              animate={{opacity:1,scale:1}}
-              transition={{delay:1.4+i*0.08,duration:0.4,ease:'easeOut'}}
-              whileHover={{scale:1.05,borderColor:'rgba(255,255,255,0.2)'}}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.4 + i * 0.08, duration: 0.4, ease: 'easeOut' }}
+              whileHover={{ scale: 1.05, borderColor: 'rgba(255,255,255,0.2)' }}
               style={{
-                fontSize:13,padding:'8px 14px',borderRadius:20,
-                background:'rgba(255,255,255,0.04)',
-                border:'1px solid rgba(255,255,255,0.08)',
-                color:'rgba(255,255,255,0.45)',
-                cursor:'default',
+                fontSize: 13, padding: '8px 14px', borderRadius: 20,
+                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                color: 'rgba(255,255,255,0.45)',
+                cursor: 'default',
               }}
             >{item}</M.span>
           ))}
         </div>
       </M.div>
 
+      {/* Post-launch support */}
+      <M.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.5 }}
+        style={{
+          marginTop: 20, padding: '16px 20px', borderRadius: 12,
+          background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)',
+        }}
+      >
+        <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.8 }}>
+          &#10003; 2 weeks post-launch support included<br/>
+          &#10003; Additional support available via hourly packs
+        </div>
+      </M.div>
+
       {/* Footer */}
       <M.div
-        initial={{opacity:0}}
-        animate={{opacity:1}}
-        transition={{delay:1.8,duration:0.6}}
-        style={{textAlign:'center',marginTop:50,paddingTop:20,borderTop:'1px solid rgba(255,255,255,0.06)'}}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8, duration: 0.6 }}
+        style={{ textAlign: 'center', marginTop: 50, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.06)' }}
       >
-        <div style={{fontSize:12,color:'rgba(255,255,255,0.2)',letterSpacing:1}}>
-          GROW SMART AI — growsmartai.co.uk
+        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', letterSpacing: 1 }}>
+          GROW SMART AI &#8212; growsmartai.co.uk
         </div>
       </M.div>
     </div>
